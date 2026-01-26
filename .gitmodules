@@ -1,3 +1,9 @@
 [submodule "camera-vlm"]
 	path = camera-vlm
 	url = C:\\Repos\\raspberrypi-code\\camera-vlm
+[submodule "game-engine"]
+	path = game-engine
+	url = C:\\Repos\\raspberrypi-code\\game-engine
+[submodule "speech-to-text"]
+	path = speech-to-text
+	url = C:\\Repos\\raspberrypi-code\\speech-to-text
