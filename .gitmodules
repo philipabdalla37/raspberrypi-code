@@ -6,4 +6,4 @@
 	url = C:\\Repos\\raspberrypi-code\\game-engine
 [submodule "speech-to-text"]
 	path = speech-to-text
-	url = C:\\Repos\\raspberrypi-code\\speech-to-text
+	url = https://github.com/philipabdalla37/speech-to-text.git
