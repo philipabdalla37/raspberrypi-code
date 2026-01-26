@@ -1,9 +1,9 @@
 [submodule "camera-vlm"]
 	path = camera-vlm
-	url = C:\\Repos\\raspberrypi-code\\camera-vlm
+	url = https://github.com/philipabdalla37/camera-vlm.git
 [submodule "game-engine"]
 	path = game-engine
-	url = C:\\Repos\\raspberrypi-code\\game-engine
+	url = https://github.com/philipabdalla37/game-engine.git
 [submodule "speech-to-text"]
 	path = speech-to-text
 	url = https://github.com/philipabdalla37/speech-to-text.git
