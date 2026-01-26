@@ -1,0 +1,3 @@
+[submodule "camera-vlm"]
+	path = camera-vlm
+	url = C:\\Repos\\raspberrypi-code\\camera-vlm
