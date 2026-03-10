@@ -1,6 +1,7 @@
 import sys
 import serial
 import time
+import subprocess
 from gpiozero import Button
 
 # 1. Import your local module
@@ -16,10 +17,21 @@ BUTTON_PIN = 17
 WHISPER_EXEC = "./speech-to-text/whisper.cpp/build/bin/whisper-cli"
 WHISPER_MODEL = "./speech-to-text/whisper.cpp/models/ggml-tiny.bin"
 
+
+#['espeak', '-ven+f3', text, '--stdout'] Female voice
+#['espeak', '-ven-rp', text, '--stdout'] English
+#['espeak', '-ven-rp', text, '--stdout'] slow dows
+def speak_text(text):
+    # This takes the text, turns it into audio data (stdout), 
+    # and "pipes" it directly into pw-play
+    ps = subprocess.Popen(['espeak', '-ven-rp', text, '--stdout'], stdout=subprocess.PIPE)
+    subprocess.run(['pw-play', '-'], stdin=ps.stdout)
+    ps.wait()
+
 def main():
     # Setup Hardware
     ser = serial.Serial(SERIAL_PORT, BAUD_RATE, timeout=0.1)
-    btn = Button(BUTTON_PIN)
+    btn = Button(BUTTON_PIN, pull_up=False)
     
     # Setup Speech Engine
     engine = SpeechEngine(WHISPER_EXEC, WHISPER_MODEL)
@@ -33,6 +45,8 @@ def main():
             message = engine.get_transcript(ser, btn)
             
             print(f"User said: {message}")
+            
+            speak_text(message)
             
             # TODO: Pass 'message' to Game Engine or Camera here
             
