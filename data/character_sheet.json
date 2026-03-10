@@ -1,0 +1,34 @@
+{
+  "Player1": {
+    "player_name": "Grog Ironjaw",
+    "strength": 18,
+    "intelligence": 8,
+    "charisma": 10,
+    "dexterity": 14,
+    "description": "A towering half-orc barbarian with a penchant for smashing doors and a surprisingly gentle heart."
+  },
+  "Player2": {
+    "player_name": "Elara Vance",
+    "strength": 8,
+    "intelligence": 19,
+    "charisma": 12,
+    "dexterity": 15,
+    "description": "An elven wizard who spends more time reading ancient tomes than speaking to living beings. She carries a glowing crystal staff."
+  },
+  "Player3": {
+    "player_name": "Finnick 'Finn' Tealeaf",
+    "strength": 10,
+    "intelligence": 14,
+    "charisma": 18,
+    "dexterity": 16,
+    "description": "A halfling bard with a silver tongue and a battered lute. Always ready to talk his way out of a fight or into a free drink."
+  },
+  "Player4": {
+    "player_name": "Sylas Nightstep",
+    "strength": 12,
+    "intelligence": 11,
+    "charisma": 14,
+    "dexterity": 18,
+    "description": "A human rogue who prefers the shadows. Quick with a dagger, quicker with a sarcastic quip, and deeply untrusting of authority."
+  }
+}
