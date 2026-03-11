@@ -7,7 +7,7 @@ from gpiozero import Button
 sys.path.append('GM_RAG')
 sys.path.append('camera-vlm')
 from DM_RAG import DM_RAG
-
+from GameSheet.src.TextDetection import TextDetection
 from Die.src.DieDetection import DieDetection
 
 # 1. Import your local module
@@ -100,7 +100,8 @@ def get_transcript(ser, btn):
 def main():
 
     die = DieDetection()
-    filename = "data/character_sheet.json"
+    text = TextDetection()
+    filename = "player-data/character_sheet.json"
 
     # game_master = DM_RAG("test")
     print("DB Loaded")
@@ -128,9 +129,10 @@ def main():
 
     while True:
         speak_text(f"Player {player_count+1} place your sheet under the camera")
-    
+        isMorePlayers = text.DetectMarkers()
+        print(isMorePlayers)
         # Logic to detect sheet goes here
-        if not detect_sheet():
+        if not isMorePlayers:
             break 
         
         player_count += 1
@@ -166,6 +168,7 @@ def main():
             end_game_message = "GAME OVER"
 
             speak_text(end_game_message)
+            text.DeletePlayerJSON()
             break
 
         if type_of_run == 0: #MIC Type of run
