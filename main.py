@@ -30,8 +30,8 @@ WHISPER_MODEL = "./speech-to-text/whisper.cpp/models/ggml-tiny.bin"
 def speak_text(text):
     # This takes the text, turns it into audio data (stdout), 
     # and "pipes" it directly into pw-play
-    ps = subprocess.Popen(['espeak', '-ven-rp', text, '--stdout'], stdout=subprocess.PIPE)
-    subprocess.run(['pw-play', '-'], stdin=ps.stdout)
+    ps = subprocess.Popen(['espeak', '-ven-rp', '-s', '100', '--stdout', text], stdout=subprocess.PIPE)
+    subprocess.run(['pw-play', '-q'], stdin=ps.stdout)
     ps.wait()
 
 # Placeholder function for sheet detection logic
@@ -122,7 +122,7 @@ def main():
     speak_text(start_game_message)
 
     print("Waiting for players to finish sheets... Press physical button to continue.")
-    btn.wait_for_press()  # This pauses the code until you physically push the button
+    # btn.wait_for_press()  # This pauses the code until you physically push the button
     speak_text("Thank you. Let's begin the character registration.")
     
     player_count = 0
