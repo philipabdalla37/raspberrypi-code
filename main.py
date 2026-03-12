@@ -6,7 +6,7 @@ import subprocess
 from gpiozero import Button
 sys.path.append('GM_RAG')
 sys.path.append('camera-vlm')
-from DM_RAG import DM_RAG
+# from DM_RAG import DM_RAG
 from GameSheet.src.TextDetection import TextDetection
 from Die.src.DieDetection import DieDetection
 
@@ -28,10 +28,13 @@ WHISPER_MODEL = "./speech-to-text/whisper.cpp/models/ggml-tiny.bin"
 #['espeak', '-ven-rp', text, '--stdout'] English
 #['espeak', '-ven-rp', text, '--stdout'] slow dows
 def speak_text(text):
-    # This takes the text, turns it into audio data (stdout), 
-    # and "pipes" it directly into pw-play
-    ps = subprocess.Popen(['espeak', '-ven-rp', '-s', '100', '--stdout', text], stdout=subprocess.PIPE)
-    subprocess.run(['pw-play', '-q'], stdin=ps.stdout)
+    # 1. Moved 'text' to the very end of the espeak list.
+    # 2. Dropped the speed (-s) down to a sluggish 80.
+    # 3. Swapped pw-play for aplay to fix any sample-rate mismatch.
+    ps = subprocess.Popen(['espeak', '-ven-rp', '-s', '160', '--stdout', text], stdout=subprocess.PIPE)
+    
+    # The '-q' tells aplay to be quiet and not print terminal clutter
+    subprocess.run(['aplay', '-q'], stdin=ps.stdout) 
     ps.wait()
 
 # Placeholder function for sheet detection logic
@@ -186,7 +189,7 @@ def main():
                 time.sleep(0.01)
 
         if type_of_run == 1: #DIE Type of run
-            player_response = die.runDie()
+            player_response = die.RunDie()
             # player_response = runDie() TESTING
             print(f"Die number Detected: {player_response}")
 
