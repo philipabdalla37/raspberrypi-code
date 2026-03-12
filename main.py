@@ -175,18 +175,20 @@ def main():
             break
 
         if type_of_run == 0: #MIC Type of run
-            if btn.is_pressed:
-                # This blocks until the user stops talking and text is ready
-                player_response = engine.get_transcript(ser, btn)
-                # player_response = get_transcript(ser, btn) TESTING
-                print(f"User said: {player_response}")
-                #DEBUGGING
-                speak_text(player_response)            
-            else:
-                # Idle: Clear garbage data so the buffer is empty when you start talking
-                if ser.in_waiting > 0:
-                    ser.read(ser.in_waiting)
-                time.sleep(0.01)
+            while True:
+                if btn.is_pressed:
+                    # This blocks until the user stops talking and text is ready
+                    player_response = engine.get_transcript(ser, btn)
+                    # player_response = get_transcript(ser, btn) TESTING
+                    print(f"User said: {player_response}")
+                    #DEBUGGING
+                    # speak_text(player_response)
+                    break            
+                else:
+                    # Idle: Clear garbage data so the buffer is empty when you start talking
+                    if ser.in_waiting > 0:
+                        ser.read(ser.in_waiting)
+                    time.sleep(0.01)
 
         if type_of_run == 1: #DIE Type of run
             player_response = die.RunDie()
