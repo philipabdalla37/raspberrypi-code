@@ -104,7 +104,7 @@ def main():
 
     die = DieDetection()
     text = TextDetection()
-    filename = "player-data/character_sheet.json"
+    filename = "player-data/player_data.json"
 
     # game_master = DM_RAG("test")
     print("DB Loaded")
